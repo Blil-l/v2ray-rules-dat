@@ -92,7 +92,6 @@ jobs:
           curl -sSL $PETERLOWE_REJECT_URL | perl -ne '/^127\.0\.0\.1\s+([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)+)/ && print "$1\n"' >> temp-reject.txt
           curl -sSL $DANPOLLOCK_REJECT_URL | perl -ne '/^127\.0\.0\.1\s+([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)+)/ && print "$1\n"' | sed '1d' >> temp-reject.txt
           curl -sSL $DOH_DOMAINS_URL | grep -v '^#' | grep -v '^$' >> temp-reject.txt
-          
 
       - name: Reserve `full`, `regexp` and `keyword` type of rules from custom lists to "reserve" files
         run: |
@@ -170,7 +169,6 @@ jobs:
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > win-extra.txt
           curl -sSL $DOH_DOMAINS_URL | grep -v '^#' | grep -v '^$' | sort --ignore-case -u > ./community/data/doh
           curl -sSL $DOH_DOMAINS_URL | grep -v '^#' | grep -v '^$' | sort --ignore-case -u > doh.txt
-          
 
       - name: Build geosite.dat file
         run: |
